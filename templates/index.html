@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <title>Mission to Mars</title>
+
+    <link 
+        rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+</head>
+<body style="background-color:darksalmon; color:black">
+    <div class="container">
+        <div style="background:linear-gradient(to bottom, #ffcccc 15%, #e9967a 85%)!important" class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <!--Add a button to activate scraping script-->
+            <p><a class="btn btn-default btn-lg" href="/scrape"
+                role="button"><b>Scrape New Data</b></a></p>
+        </div>
+        <!--Add section for Mars News-->
+        <div class="row" id="mars-news">
+            <div class="col-md-12">
+            <div class="media">
+                <div class="media-body">
+                    <h2>Latest Mars News</h2>
+                    <h4>{{mars.news_title}}</h4>
+                    <p>{{mars.news_paragraph}}</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--Section for Mars Feature Image and Fact table-->
+        <!--First Level-->
+        <div class="row" id="mars-featured-image">
+            <!--Second Level-->
+            <div class="col-md-8">
+                <h2>Feature Mars Image</h2>
+                <img 
+                src="{{mars.featured_image}}" 
+                class="img-responsive" 
+                alt="Responsive image"
+                />
+            </div>
+            <div class="col-md-4">
+                <!--Mars Facts-->
+                <div class="row" id="mars-facts">
+                    <h3>Mars Facts</h3>
+                    {{mars.facts|safe}}
+                </div>
+            </div>
+        </div>
+        <!--Section for Mars Hemisphere Images -->
+        <div class="row" id="mars-hemisphere">
+            <div class="col-md-12">
+                <h2><center>Mars Hemispheres</center></h2>
+                {% for hemisphere in mars.hemispheres %}
+                    <div class="col-md-3">
+                        <div class = "thumbnail">
+                            <img src="{{hemisphere.img_url}}"
+                              <h2><b>{{hemisphere.title}}</b></h2>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
